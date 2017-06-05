@@ -28,13 +28,13 @@ public class GuestbookMailController {
 			method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> sendMail(@RequestBody GuestbookEntry entry) {
-		
+		System.out.println("sending start+++++");
+
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setFrom(from);
 		msg.setTo(to);
 		msg.setSubject("[Guestbook] " + entry.getTitle());
 		msg.setText(entry.getCommenter() + " schrieb:\r\n\r\n" + entry.getComment());
-		
 		//sender.send(msg);
 		try {
 			Thread.sleep(1500);
@@ -42,7 +42,7 @@ public class GuestbookMailController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println("sending end+++++");
 		return ResponseEntity.ok().build();
 	}
 	
